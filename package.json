@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next build && next start -p 4001"
+  },
+  "dependencies": {
+    "@next-auth/mongodb-adapter": "^1.1.1",
+    "mongodb": "^4.15.0",
+    "next": "^13.3.0",
+    "next-auth": "^4.21.1",
+    "next-sanity": "^0.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-portable-text": "^0.4.3"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^3.8.3",
+    "@types/node": "17.0.4",
+    "@types/react": "18.0.33",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "react-hook-form": "^7.43.9",
+    "tailwindcss": "^3.3.1",
+    "typescript": "4.5.4"
+  }
+}
