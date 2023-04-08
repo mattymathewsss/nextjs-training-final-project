@@ -5,7 +5,7 @@ A full-stack project based on Next.js and Tailwind CSS (v3.0).
 This is a medium clone using Sanity as the backend and CMS.
 
 ## Tasks
-
+- fork this project and provide repo access to: @rcdelacruz
 - create reusable Components
 
   ![](/public/component-tree.png "Component tree")
