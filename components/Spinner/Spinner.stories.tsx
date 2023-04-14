@@ -10,8 +10,8 @@ export default {
 } as ComponentMeta<typeof Spinner>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Spinner> = (args) => (
-  <Spinner {...args} />
+const Template: ComponentStory<typeof Spinner> = () => (
+  <Spinner />
 );
 
 export const Base = Template.bind({});
