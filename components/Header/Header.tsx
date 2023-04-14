@@ -79,7 +79,7 @@ const Header = ({  }: IHeader) => {
             <>
             
             <Link href="">
-                 <p className='font-medium border-x-2 px-2 border-slate-950'>{session ? `Welcome, ${session?.user.name || ''}` : ''}</p>
+                 <p className='font-medium border-x-2 px-2 border-slate-950'>{session ? `Welcome, ${session?.user?.name || ''}` : ''}</p>
                  </Link>
             <Link href="">
               <Button
