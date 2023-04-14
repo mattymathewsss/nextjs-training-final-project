@@ -7,7 +7,8 @@
     "start": "next build && next start -p 4001",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=be2372d2760a"
+    "chromatic": "npx chromatic --project-token=be2372d2760a",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.1.1",
@@ -46,6 +47,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
     "msw": "^1.2.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
