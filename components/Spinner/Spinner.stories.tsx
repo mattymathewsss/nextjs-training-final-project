@@ -1,6 +1,6 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
-import Spinner, { type ISpinner } from './Spinner';
-import { mockSpinnerProps } from './Spinner.mock';
+import Spinner from './Spinner';
+import { mockSpinnerProps } from './Spinner.mocks';
 
 export default {
   title: 'Components/Spinner',
@@ -18,4 +18,4 @@ export const Base = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Base.args = {
   ...mockSpinnerProps.base,
-} as ISpinner;
+};
