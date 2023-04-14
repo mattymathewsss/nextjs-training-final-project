@@ -1,18 +1,18 @@
-import React, {useRef, useState} from 'react'
+import { CloseIcon } from '@sanity/icons'
 import {
+  Button,
   Card,
   Container,
-  Button,
   Flex,
-  Label,
   Heading,
-  Text,
+  Label,
   Stack,
+  Text,
   useElementSize,
   useTheme,
 } from '@sanity/ui'
-import {CloseIcon} from '@sanity/icons'
-import styled, {css} from 'styled-components'
+import { useRef, useState } from 'react'
+import styled, { css } from 'styled-components'
 
 const BlueColor = css`
   color: ${({theme}) => theme.sanity.color.muted.primary.enabled.fg};
@@ -35,7 +35,7 @@ export const GetStartedTutorial = () => {
   const rootElement = useRef(null)
   const rect = useElementSize(rootElement.current)
   const width = rect?.content?.width
-  const isSmallScreen = width ? width < sanity.media[1] : false
+  const isSmallScreen = width ? width < sanity?.media[1] : false
   const isProdEnv = process.env.NODE_ENV !== 'development'
 
   const onClose = () => {
