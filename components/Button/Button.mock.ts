@@ -1,7 +1,8 @@
 import { type IButton } from './Button';
 
 const base: IButton = {
-  sampleTextProp: 'For Developers use only',
+  content: 'Hello World',
+  buttonType: 'btn-primary',
 };
 
 export const mockButtonProps = {

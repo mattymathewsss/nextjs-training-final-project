@@ -13,7 +13,7 @@ module.exports = {
         implementation: require('postcss')
       }
     }
-  }, '@storybook/addon-mdx-gfm'],
+  }, '@storybook/addon-mdx-gfm', '@tomfreudenberg/next-auth-mock/storybook'],
   framework: '@storybook/nextjs',
   core: {
     builder: '@storybook/builder-webpack5'

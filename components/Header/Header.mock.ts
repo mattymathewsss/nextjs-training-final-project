@@ -1,7 +1,7 @@
 import { type IHeader } from './Header';
 
 const base: IHeader = {
-  sampleTextProp: 'For Developers use only',
+  loggedIn: false
 };
 
 export const mockHeaderProps = {

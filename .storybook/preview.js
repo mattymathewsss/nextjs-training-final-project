@@ -3,7 +3,7 @@ import * as NextImage from 'next/image';
 //import { AuthProvider } from '../src/context/auth/AuthContext';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import React from 'react';
-import '../styles/globals.css'
+import '../styles/globals.css';
 
 // Initialize MSW
 initialize();

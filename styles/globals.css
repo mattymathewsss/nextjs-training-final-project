@@ -1,3 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* body {
+    @apply bg-bodyColor;
+  } */
+  h4 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-4xl font-bold;
+  }
+  h1 {
+    @apply text-5xl font-bold;
+  }
+}
+
+@layer utilities {
+  .btn-hover-primary {
+    @apply bg-neutral-950 transition-all duration-200;
+  }
+  .btn-hover-outline {
+    @apply bg-indigo-600 text-white underline;
+  }
+
+  .btn-hover-transparent {
+    @apply bg-indigo-100 text-indigo-600 underline;
+  }
+
+  .text-muted {
+    @apply text-zinc-500;
+  }
+
+  .text-bold {
+    @apply font-bold;
+  }
+
+  .btn-base {
+    @apply rounded-full px-4 py-2;
+  }
+}
+
+@layer components {
+  .card-border {
+    @apply mb-2 rounded-md bg-white shadow-cardShadow;
+  }
+
+
+
+  .btn-primary {
+    @apply hover:btn-hover-primary bg-neutral-900 text-white transition-all duration-200;
+  }
+
+  .btn-outline {
+    @apply hover:btn-hover-outline border border-indigo-600 bg-transparent font-semibold text-indigo-800;
+  }
+
+  .btn-transparent {
+    @apply hover:btn-hover-transparent;
+  }
+}

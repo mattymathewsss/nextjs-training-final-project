@@ -1,8 +1,9 @@
+import Header from 'components/Header/Header'
+import Spinner from 'components/Spinner/Spinner'
 import { getSession, signIn } from 'next-auth/react'
-import React, { useState, useEffect } from 'react'
-import Header from '../components/Header'
 import Head from 'next/head'
-function about() {
+import { useEffect, useState } from 'react'
+function story() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -17,7 +18,7 @@ function about() {
     securePage()
   }, [])
   if (loading) {
-    return <h2>loading...</h2>
+    return <Spinner/>
   }
   return (
     <>
@@ -27,10 +28,12 @@ function about() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <div>In About page</div>
+        <div>In story page</div>
       </div>
     </>
   )
 }
 
-export default about
+export default story
+
+

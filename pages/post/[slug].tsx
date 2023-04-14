@@ -1,11 +1,12 @@
+import Header from 'components/Header/Header'
+import Spinner from 'components/Spinner/Spinner'
 import { GetStaticProps } from 'next'
+import { getSession, signIn } from 'next-auth/react'
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import PortableText from 'react-portable-text'
 import { sanityClient, urlFor } from '../../sanity'
 import { Post } from '../../typings'
-import PortableText from 'react-portable-text'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { useState, useEffect } from 'react'
-import { getSession, signIn } from 'next-auth/react'
-import Header from '../../components/Header'
 // import {} from 'next-auth/client'
 interface Props {
   post: Post
@@ -55,7 +56,7 @@ function Post({ post }: Props) {
     securePage()
   }, [])
   if (loading) {
-    return <h2>loading...</h2>
+    return <Spinner/>
   }
   return (
     <>
