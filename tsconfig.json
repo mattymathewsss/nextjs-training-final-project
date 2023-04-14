@@ -28,6 +28,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
+    "**/*.js",
+    "/*.js",
     "src/assets/images/index.js"
   ],
   "exclude": ["node_modules"]

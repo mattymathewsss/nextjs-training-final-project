@@ -2,13 +2,12 @@ import ArticleCard from 'components/ArticleCard/ArticleCard'
 import Banner from 'components/Banner/Banner'
 import Button from 'components/Button/Button'
 import PrimaryLayout from 'components/Layouts/PrimaryLayout/PrimaryLayout'
-import { useSession } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { sanityClient, urlFor } from '../sanity'
-import { Post } from '../typings'
-import { NextPageWithLayout } from './page'
+import { type Post } from '../typings'
+import { type NextPageWithLayout } from './page'
 
 interface Props {
   posts: [Post]
@@ -17,8 +16,6 @@ interface Props {
 type AppWithLayout = Props & NextPageWithLayout
 
 const Home = ({ posts }: AppWithLayout) => {
-  const { data: session, status } = useSession()
-  const loading = status === 'loading'
 
   //dummy data only
   const trendingData = [
@@ -130,14 +127,14 @@ const Home = ({ posts }: AppWithLayout) => {
                   title={post?.title}
                   url={`/post/${post?.slug.current}`}
                   author={post?.author.name}
-                  authorImageUrl={urlFor(post?.author.image).url()!}
+                  authorImageUrl={urlFor(post?.author.image).url() || ''}
                   description={post?.description}
                   size="base"
                 />
 
                 <div className="relative h-80 w-full">
                   <Image
-                    src={urlFor(post?.mainImage).url()!}
+                    src={urlFor(post?.mainImage).url() || ''}
                     alt="Logo"
                     style={{
                       objectFit: 'cover',
@@ -160,7 +157,7 @@ const Home = ({ posts }: AppWithLayout) => {
 
 export default Home
 
-Home.getLayout = (page) => {
+Home.getLayout = (page = '') => {
   return <PrimaryLayout>{page}</PrimaryLayout>
 }
 

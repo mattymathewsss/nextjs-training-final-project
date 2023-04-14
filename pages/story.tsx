@@ -3,19 +3,19 @@ import Spinner from 'components/Spinner/Spinner'
 import { getSession, signIn } from 'next-auth/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-function story() {
+const  Story = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const securePage = async () => {
       const session = await getSession()
       if (!session) {
-        signIn()
+        signIn().catch((error) => console.log(error))
       } else {
         setLoading(false)
       }
     }
-    securePage()
+    securePage().catch((error) => console.log(error))
   }, [])
   if (loading) {
     return <Spinner/>
@@ -34,6 +34,6 @@ function story() {
   )
 }
 
-export default story
+export default Story
 
 

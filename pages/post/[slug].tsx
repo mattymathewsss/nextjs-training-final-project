@@ -1,9 +1,10 @@
 import Header from 'components/Header/Header'
 import Spinner from 'components/Spinner/Spinner'
-import { GetStaticProps } from 'next'
+import { type GetStaticProps } from 'next'
 import { getSession, signIn } from 'next-auth/react'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm, type SubmitHandler } from 'react-hook-form'
 import PortableText from 'react-portable-text'
 import { sanityClient, urlFor } from '../../sanity'
 import { Post } from '../../typings'
@@ -48,35 +49,48 @@ function Post({ post }: Props) {
     const securePage = async () => {
       const session = await getSession()
       if (!session) {
-        signIn()
+        await signIn()
       } else {
         setLoading(false)
       }
     }
-    securePage()
+    securePage().catch((error) => console.log(error))
   }, [])
   if (loading) {
-    return <Spinner/>
+    return <Spinner />
   }
   return (
     <>
       <Header />
       <main className="mx-auto max-w-7xl">
-        <img
-          className="h-40 w-full object-cover"
-          src={urlFor(post.mainImage).url()!}
-          alt=""
-        />
+        <div className="relative h-96 w-full object-cover">
+          <Image
+            src={urlFor(post.mainImage).url() || ''}
+            alt="Logo"
+            objectFit="cover"
+            fill
+          />
+        </div>
+
         <article className="mx-auto max-w-3xl p-5">
-          <h1 className="mt-10 mb-3 text-3xl ">{post.title}</h1>
+          <h1 className="mb-3 mt-10 text-3xl ">{post.title}</h1>
           <h2 className="mb-2 text-xl font-light text-gray-500">
             {post.description}
           </h2>
           <div className="flex items-center space-x-2">
-            <img
-              className="h-10 w-10 rounded-full"
-              src={urlFor(post.author.image).url()!}
-              alt=""
+            <Image
+              className="my-auto"
+              src={urlFor(post.author.image).url() || ''}
+              alt="Logo"
+              width={0}
+              height={0}
+              style={{
+                width: '30px',
+                height: '30px',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+              priority
             />
 
             <p className="text-sm font-extralight">
@@ -109,9 +123,9 @@ function Post({ post }: Props) {
             />
           </div>
         </article>
-        <hr className="my-5 mx-auto max-w-lg border border-yellow-500" />
+        <hr className="mx-auto my-5 max-w-lg border border-yellow-500" />
         {submitted ? (
-          <div className="my-10 mx-auto flex max-w-2xl flex-col bg-yellow-500 p-10 text-white">
+          <div className="mx-auto my-10 flex max-w-2xl flex-col bg-yellow-500 p-10 text-white">
             <h3 className="text-3xl font-bold">
               Thank you for submitting your comment!
             </h3>
@@ -120,7 +134,7 @@ function Post({ post }: Props) {
         ) : (
           <form
             className="mx-auto mb-10 flex max-w-2xl flex-col p-5"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={() => handleSubmit(onSubmit)}
           >
             <h3 className="text-sm text-yellow-500">Enjoyed this article?</h3>
             <h4 className="text-3xl font-bold">Leave a comment below!</h4>
@@ -135,7 +149,7 @@ function Post({ post }: Props) {
               <span className="text-gray-700">Name</span>
               <input
                 {...register('name', { required: true })}
-                className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-yellow-500"
+                className="form-input mt-1 block w-full rounded border px-3 py-2 shadow ring-yellow-500"
                 placeholder="John Appleseed"
                 type="text"
               />
@@ -144,7 +158,7 @@ function Post({ post }: Props) {
               <span className="text-gray-780">Email</span>
               <input
                 {...register('email', { required: true })}
-                className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-yellow-500"
+                className="form-input mt-1 block w-full rounded border px-3 py-2 shadow ring-yellow-500"
                 placeholder="John Appleseed"
                 type="text"
               />
@@ -154,7 +168,7 @@ function Post({ post }: Props) {
               <span className="text-gray-700">Comment</span>
               <textarea
                 {...register('comment', { required: true })}
-                className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-yellow-500"
+                className="form-input mt-1 block w-full rounded border px-3 py-2 shadow ring-yellow-500"
                 placeholder="John Appleseed"
                 rows={8}
               />
@@ -170,13 +184,13 @@ function Post({ post }: Props) {
             </div>
             <input
               type="submit"
-              className="focus:shadow-outline cursor-pointer rounded bg-yellow-500 py-2 px-4 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none"
+              className="focus:shadow-outline cursor-pointer rounded bg-yellow-500 px-4 py-2 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none"
             />
           </form>
         )}
 
         {/* Comment */}
-        <div className="my-5 mx-auto flex max-w-2xl flex-col space-y-2 p-10 shadow shadow-yellow-500">
+        <div className="mx-auto my-5 flex max-w-2xl flex-col space-y-2 p-10 shadow shadow-yellow-500">
           <h3>Comments</h3>
           <hr />
           {post.comments.map((comment) => (
@@ -203,10 +217,11 @@ export const getStaticPaths = async () => {
         }
     }    
     `
-  const posts = await sanityClient.fetch(query)
+  const posts: Array<Post> = await sanityClient.fetch(query) 
 
-  const paths = posts.map((post: Post) => ({
-    params: {
+
+  const paths = posts?.map((post: Post) => ({
+    params: {  
       slug: post.slug.current,
     },
   }))

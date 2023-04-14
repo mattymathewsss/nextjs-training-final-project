@@ -32,7 +32,7 @@ const ArticleCard = ({
         </p>
       </Link>
       {size === 'base' ? (
-        <p className="mb-2 text-slate-500">{description}</p>
+        <div><p className="mb-2 text-slate-500">{description}</p></div>
       ) : null}
       <div className="text-slate-500">
         <small>March {Math. floor((Math. random()*10))}</small>

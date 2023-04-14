@@ -3,11 +3,9 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export interface IHeader {
-  loggedIn?: boolean
-}
+export interface IHeader {}
 
-const Header = ({ loggedIn }: IHeader) => {
+const Header = ({  }: IHeader) => {
   const { data: session, status } = useSession()
   const loading = status === 'loading'
 
@@ -61,18 +59,18 @@ const Header = ({ loggedIn }: IHeader) => {
           <div className="hidden items-center space-x-5 md:inline-flex">
             {navLinks.map((link) => (
               <Link key={link.title} id={link.title} href={link.url}>
-                <small className="font-semibold">{link.title}</small>
+                <p className="font-semibold">{link.title}</p>
               </Link>
             ))}
           </div>
           {!loading && !session && (
             <Link href="">
               <Button
-                content={<small>Sign In</small>}
+                content={<p>Sign In</p>}
                 buttonType="btn-primary"
                 handleClick={(e) => {
                   e.preventDefault()
-                  signIn()
+                  signIn().catch((error) => console.log(error))
                 }}
               />
             </Link>
@@ -81,15 +79,15 @@ const Header = ({ loggedIn }: IHeader) => {
             <>
             
             <Link href="">
-                 <small className='font-medium border-x-2 px-2 border-slate-950'>{session ? `Welcome, ${session?.user?.name}` : ''}</small>
+                 <p className='font-medium border-x-2 px-2 border-slate-950'>{session ? `Welcome, ${session?.user.name || ''}` : ''}</p>
                  </Link>
             <Link href="">
               <Button
-                content={<small>Sign Out</small>}
+                content={<p>Sign Out</p>}
                 buttonType="btn-primary"
                 handleClick={(e) => {
                   e.preventDefault()
-                  signOut()
+                  signOut().catch((error) => console.log(error))
                 }}
               />
             </Link>
