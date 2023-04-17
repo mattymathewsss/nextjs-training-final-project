@@ -23,13 +23,13 @@ const ArticleCard = ({
     <div className="w-full">
       <AuthorTitle name={author} imageUrl={authorImageUrl} />
       <Link href={url || ''}>
-        <p
+        <h5
           className={`line-clamp-2 ${
             size === 'base' ? 'text-2xl' : 'text-xl'
           } my-2 font-bold`}
         >
           {title}
-        </p>
+        </h5>
       </Link>
       {size === 'base' ? (
         <div><p className="mb-2 text-slate-500">{description}</p></div>
