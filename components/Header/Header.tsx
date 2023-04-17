@@ -1,11 +1,9 @@
-import Button from 'components/Button/Button'
+import Button from '../Button/Button'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export interface IHeader {}
-
-const Header = ({  }: IHeader) => {
+const Header = () => {
   const { data: session, status } = useSession()
   const loading = status === 'loading'
 

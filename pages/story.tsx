@@ -1,5 +1,5 @@
-import Header from 'components/Header/Header'
-import Spinner from 'components/Spinner/Spinner'
+import Header from '../components/Header/Header'
+import Spinner from '../components/Spinner/Spinner'
 import { getSession, signIn } from 'next-auth/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'

@@ -1,13 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3000",
     "lint": "next lint",
     "build": "next build",
     "start": "next build && next start -p 4001",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=be2372d2760a",
+    "chromatic": "npx chromatic --project-token=be2372d2760a --exit-once-uploaded",
     "prepare": "husky install"
   },
   "dependencies": {

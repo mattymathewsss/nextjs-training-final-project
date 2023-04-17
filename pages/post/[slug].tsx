@@ -1,5 +1,5 @@
-import Header from 'components/Header/Header'
-import Spinner from 'components/Spinner/Spinner'
+import Header from '../../components/Header/Header'
+import Spinner from '../../components/Spinner/Spinner'
 import { type GetStaticProps } from 'next'
 import { getSession, signIn } from 'next-auth/react'
 import Image from 'next/image'
@@ -20,7 +20,7 @@ interface IFormInput {
   comment: string
 }
 
-function Post({ post }: Props) {
+const Postings = ({ post }: Props) => {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -207,7 +207,7 @@ function Post({ post }: Props) {
   )
 }
 
-export default Post
+export default Postings
 
 export const getStaticPaths = async () => {
   const query = `*[_type=='post']{

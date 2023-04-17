@@ -1,4 +1,4 @@
-import AuthorTitle from 'components/AuthorTitle/AuthorTitle'
+import AuthorTitle from '../AuthorTitle/AuthorTitle'
 import Link from 'next/link'
 
 export interface IArticleCard {
