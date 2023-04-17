@@ -8,6 +8,8 @@ import Link from 'next/link'
 import { sanityClient, urlFor } from '../sanity'
 import { type Post } from '../typings'
 import { type NextPageWithLayout } from './page'
+import { useEffect, useState } from 'react'
+import Spinner from '../components/Spinner/Spinner'
 
 interface Props {
   posts: [Post]
@@ -16,6 +18,11 @@ interface Props {
 type AppWithLayout = Props & NextPageWithLayout
 
 const Home = ({ posts }: AppWithLayout) => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    setLoading(true);
+  },[])
 
   //dummy data only
   const trendingData = [
@@ -52,9 +59,11 @@ const Home = ({ posts }: AppWithLayout) => {
 
 
   ]
+  if(!loading) return <Spinner/>;
+
   return (
     <>
-      <div className="mx-auto" suppressHydrationWarning>
+      <div className="mx-auto">
         <Head>
           <title>Medium Blog</title>
           <link rel="icon" href="/favicon.ico" />
@@ -101,7 +110,7 @@ const Home = ({ posts }: AppWithLayout) => {
           <div className="my-4 grid grid-cols-3 gap-4">
            
           {
-            trendingData.map((data, index) => (
+            trendingData?.map((data, index) => (
               <div className="flex" key={data.title}>
               <h3 className="mr-3 font-bold text-slate-300">0{index + 1}</h3>
               <ArticleCard 
@@ -117,9 +126,8 @@ const Home = ({ posts }: AppWithLayout) => {
 
         {/* Posts */}
         <div className="container mx-auto mb-10">
-          {/* grid grid-cols p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3 */}
           <div className="grid p-3">
-            {posts?.map((post) => ( 
+            {posts && posts?.map((post) => ( 
              <>
              <Link href={`/post/${post?.slug.current}`}>
               <div key={post?._id} className="my-10 grid grid-cols-2 gap-2">

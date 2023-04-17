@@ -23,7 +23,7 @@ const AuthorTitle = ({ name, imageUrl }: IAuthorTitle) => {
           }}
         />
       }
-      <small className='ml-2 my-auto font-medium'>{name}</small>
+      <p className='ml-2 my-auto font-medium'>{name}</p>
     </div>
   )
 }

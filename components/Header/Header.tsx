@@ -64,7 +64,7 @@ const Header = () => {
           {!loading && !session && (
             <Link href="">
               <Button
-                content={<p>Sign In</p>}
+                content={<span>Sign In</span>}
                 buttonType="btn-primary"
                 handleClick={(e) => {
                   e.preventDefault()
@@ -81,7 +81,7 @@ const Header = () => {
                  </Link>
             <Link href="">
               <Button
-                content={<p>Sign Out</p>}
+                content={<span>Sign Out</span>}
                 buttonType="btn-primary"
                 handleClick={(e) => {
                   e.preventDefault()

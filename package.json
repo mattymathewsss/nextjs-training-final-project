@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 3001",
     "lint": "next lint",
     "build": "next build",
     "start": "next build && next start -p 4001",
